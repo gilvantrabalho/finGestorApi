@@ -1,10 +1,11 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
 use App\Models\Transaction;
 
-class TransactionRepository {
+class TransactionRepository
+{
 
     public function getAllByUserId(int $user_id)
     {
@@ -39,4 +40,9 @@ class TransactionRepository {
             ->update($arrayData);
     }
 
+    public function filterByDescription(int $user_id, string $description)
+    {
+        return Transaction::where('user_id', $user_id)
+            ->where('description', 'like', "{$description}%")->get();
+    }
 }

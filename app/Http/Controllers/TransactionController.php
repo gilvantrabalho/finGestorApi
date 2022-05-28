@@ -14,7 +14,7 @@ class TransactionController extends Controller
 
     public function __construct(TransactionRepository $transactionRepository)
     {
-        $this->transactionRepository = $transactionRepository;    
+        $this->transactionRepository = $transactionRepository;
     }
 
     public function show(int $user_id): JsonResponse
@@ -29,7 +29,7 @@ class TransactionController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->only('user_id', 'type', 'description', 'value');
-        
+
         $validator = Validator::make($data, [
             'user_id' => 'required',
             'type' => 'string|required',
@@ -135,7 +135,7 @@ class TransactionController extends Controller
         }
 
         $data = $request->only('type', 'description', 'value');
-        
+
         $validator = Validator::make($data, [
             'type' => 'string|required',
             'description' => 'required',
@@ -171,6 +171,16 @@ class TransactionController extends Controller
             'error' => false,
             'response' => [
                 'message' => 'Transação editada com sucesso!'
+            ]
+        ]);
+    }
+
+    public function filters(int $user_id, string $description): JsonResponse
+    {
+        return response()->json([
+            'error' => false,
+            'response' => [
+                'transactions' => $this->transactionRepository->filterByDescription($user_id, $description)
             ]
         ]);
     }
