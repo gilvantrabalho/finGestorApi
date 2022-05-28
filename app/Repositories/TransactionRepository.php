@@ -43,7 +43,7 @@ class TransactionRepository
     public function filterByDescription(int $user_id, string $description)
     {
         return Transaction::where('user_id', $user_id)
-            ->where('status', config('constants.TRANSACTION.INATIVO'))
+            ->where('status', config('constants.TRANSACTION.ATIVO'))
             ->where('description', 'like', "{$description}%")->get();
     }
 }
