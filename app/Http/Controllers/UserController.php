@@ -66,11 +66,9 @@ class UserController extends Controller
             $validator = Validator::make($credentials, [
                 'username' => 'string|required',
                 'password' => 'string|required',
-                'status' => 'required'
             ],[
                 'username.required' => 'Nome de usuário é um campo obrigatório!',
                 'password.required' => 'Senha é um campo obrigatório',
-                'status.required' => 'Status é um campo obrigatório' 
             ]);
     
             if ($validator->fails()) {
