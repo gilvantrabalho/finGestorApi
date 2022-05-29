@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UserRepository {
@@ -23,7 +24,9 @@ class UserRepository {
 
     public function create($dataArray)
     {
-        return DB::table($this->table)->insert($dataArray);
+        $new = new User($dataArray);
+        $new->save();
+        return $new;
     }
 
     public function update(int $id, $dataArray)
