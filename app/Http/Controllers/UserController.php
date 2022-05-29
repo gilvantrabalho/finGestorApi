@@ -86,7 +86,9 @@ class UserController extends Controller
                 'status' => config('constants.USER.ATIVO')
             ];
     
-            if (!$this->userRepository->create($dataArray)) {
+            $newUser = $this->userRepository->create($dataArray);
+
+            if (!$newUser) {
                 return response()->json([
                     'error' => true,
                     'response' => [
@@ -98,7 +100,8 @@ class UserController extends Controller
             return response()->json([
                 'error' => false,
                 'response' => [
-                    'message' => 'Usuário cadastrado com sucesso!'
+                    'message' => 'Usuário cadastrado com sucesso!',
+                    'user' => $newUser
                 ]
             ]);
 
