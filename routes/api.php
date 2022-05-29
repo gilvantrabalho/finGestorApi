@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReleaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,9 @@ Route::controller(TransactionController::class)->prefix('transaction')->group(fu
     Route::post('update-data/{id}', 'updateData');
     Route::get('get-by-id/{id}', 'getById');
     Route::get('filter-by-description/{user_id}/{description}', 'filters');
+});
+
+Route::controller(ReleaseController::class)->prefix('release')->group(function () {
+    Route::get('get-all', 'index');
+    Route::post('create', 'store');
 });
