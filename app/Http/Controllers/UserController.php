@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         try {
 
-            $credentials = $request->only('username', 'password', 'status');
+            $credentials = $request->only('username', 'password');
             $validator = Validator::make($credentials, [
                 'username' => 'string|required',
                 'password' => 'string|required',
