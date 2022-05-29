@@ -62,7 +62,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
-
             $credentials = $request->only('username', 'password');
             $validator = Validator::make($credentials, [
                 'username' => 'string|required',
@@ -82,10 +81,8 @@ class UserController extends Controller
                     ]
                 ]);
             }    
-            // dd($request);
 
             $dataArray = [
-                // 'id' => 4,
                 'username' => Str::slug($request->username),
                 'password' => md5($request->password),
                 'status' => config('constants.USER.ATIVO')
