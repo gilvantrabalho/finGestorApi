@@ -12,6 +12,7 @@ class Transaction extends Model
     public $table = 'gilvan_santos.transactions';
 
     protected $fillable = [
-        'user_id', 'type', 'description', 'value', 'status'
+        'user_id', 'type', 'description', 'value', 'status',
+        'updated_at', 'created_at'
     ];
 }

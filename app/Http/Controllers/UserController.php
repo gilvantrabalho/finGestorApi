@@ -81,7 +81,7 @@ class UserController extends Controller
             }    
 
             $dataArray = [
-                'username' => Str::slug($request->username),
+                'username' => $request->username,
                 'password' => md5($request->password),
                 'status' => config('constants.USER.ATIVO')
             ];
@@ -112,7 +112,7 @@ class UserController extends Controller
 
     // Editar um usuário
     public function update(Request $request, int $id)
-    {   
+    {
         try {
 
             $credentials = $request->only('username', 'status');
